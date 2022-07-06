@@ -24,12 +24,17 @@ function App(props) {
   const handleRemove = () => {
     setBoard(Array(9).fill(null));
   };
-  
+  const arr = Array(9).fill(false)
+  if(winner){
+    arr[winner.winline[0]]=true
+    arr[winner.winline[1]]=true
+    arr[winner.winline[2]]=true
+  }
   console.log(winner);
   return (
     <div>
       <Container>
-        {winner ? <h3 className="winner">Winner is:{winner}</h3> : null}
+        {winner ? <h3 className="winner">Winner is:{winner.who}</h3> : null}
         <Board>
           {board.map((item, index) => (
             <Square
@@ -37,6 +42,7 @@ function App(props) {
               key={index}
               handlePlay={handlePlay}
               index={index}
+              stt={arr}
               className="is_x"
               data={winner}
             />
@@ -81,7 +87,7 @@ const couculateHandle = (board) => {
   for (let i = 0; i < winline.length; i++) {
     const [a, b, c] = winline[i];
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return board[a];
+      return {who:board[a],winline:winline[i]}
     }
   }
   return null;
