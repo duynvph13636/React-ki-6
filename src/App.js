@@ -1,5 +1,4 @@
-import logo from "./logo.svg";
-import react, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import Square from "./components/square";
@@ -94,3 +93,4 @@ const couculateHandle = (board) => {
 };
 
 export default App;
+
